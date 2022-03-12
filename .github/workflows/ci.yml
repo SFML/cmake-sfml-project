@@ -1,0 +1,53 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: ${{ matrix.platform.name }} ${{ matrix.config.name }}
+    runs-on: ${{ matrix.platform.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+        - { name: Windows VS2019, os: windows-2019  }
+        - { name: Windows VS2022, os: windows-2022  }
+        - { name: Linux GCC,      os: ubuntu-latest }
+        - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        - { name: MacOS XCode,    os: macos-latest  }
+        config:
+        - { name: Shared, flags: -DCMAKESFMLPROJECT_STATIC_LIBS=OFF -DBUILD_SHARED_LIBS=TRUE }
+        - { name: Static, flags: -DCMAKESFMLPROJECT_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=FALSE }
+
+    steps:
+    - name: Install Linux Dependencies
+      if: runner.os == 'Linux'
+      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
+
+    - name: CMake SFML Project - Checkout Code
+      uses: actions/checkout@v3
+
+    - name: SFML - Checkout Code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        repository: SFML/SFML
+        ref: 2.6.x
+        path: SFML
+
+    - name: SFML - Configure CMake
+      shell: bash
+      run: cmake -S $GITHUB_WORKSPACE/SFML -B $GITHUB_WORKSPACE/SFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/SFML/install -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} ${{matrix.config.flags}}
+
+    - name: SFML - Build
+      shell: bash
+      run: cmake --build $GITHUB_WORKSPACE/SFML/build --config Release --target install
+
+    - name: CMake SFML Project - Configure CMake
+      shell: bash
+      run: cmake -S $GITHUB_WORKSPACE -B $GITHUB_WORKSPACE/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/install -DCMAKE_VERBOSE_MAKEFILE=ON -DSFML_DIR=$GITHUB_WORKSPACE/SFML/install/lib/cmake/SFML ${{matrix.platform.flags}} ${{matrix.config.flags}}
+
+    - name: CMake SFML Project - Build
+      shell: bash
+      run: cmake --build $GITHUB_WORKSPACE/build --config Release --target install
