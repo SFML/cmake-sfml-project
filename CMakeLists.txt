@@ -15,5 +15,4 @@ find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 
 # Install executable
-install(TARGETS CMakeSFMLProject
-        RUNTIME DESTINATION .)
+install(TARGETS CMakeSFMLProject)
