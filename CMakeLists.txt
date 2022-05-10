@@ -16,7 +16,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_EXTENSIONS NO CXX_STANDARD_
 find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 
 # Link SFML
-target_link_libraries(${PROJECT_NAME} sfml-graphics)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics)
 
 # Install executable
 install(TARGETS ${PROJECT_NAME}
