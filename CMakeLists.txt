@@ -10,7 +10,6 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 # CMake SFML Project uses C++17 features
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_EXTENSIONS NO CXX_STANDARD_REQUIRED YES)
 
 # Find SFML
 find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
