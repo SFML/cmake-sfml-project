@@ -2,11 +2,8 @@ cmake_minimum_required(VERSION 3.15)
 
 project(CMakeSFMLProject LANGUAGES CXX)
 
-# Find all source files
-file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.hpp)
-
 # Tell CMake to build a executable
-add_executable(CMakeSFMLProject ${SOURCE_FILES})
+add_executable(CMakeSFMLProject src/main.cpp)
 
 # CMake SFML Project uses C++17 features
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
