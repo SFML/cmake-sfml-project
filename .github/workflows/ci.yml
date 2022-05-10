@@ -17,8 +17,8 @@ jobs:
         - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: MacOS XCode,    os: macos-latest  }
         config:
-        - { name: Shared, flags: -DCMAKESFMLPROJECT_STATIC_LIBS=OFF -DBUILD_SHARED_LIBS=TRUE }
-        - { name: Static, flags: -DCMAKESFMLPROJECT_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=FALSE }
+        - { name: Shared, flags: -DSFML_STATIC_LIBRARIES=OFF -DBUILD_SHARED_LIBS=TRUE }
+        - { name: Static, flags: -DSFML_STATIC_LIBRARIES=ON -DBUILD_SHARED_LIBS=FALSE }
 
     steps:
     - name: Install Linux Dependencies
