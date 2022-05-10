@@ -6,17 +6,17 @@ project(CMakeSFMLProject LANGUAGES CXX)
 file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.hpp)
 
 # Tell CMake to build a executable
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+add_executable(CMakeSFMLProject ${SOURCE_FILES})
 
 # CMake SFML Project uses C++17 features
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 
 # Find SFML
 find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 
 # Link SFML
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics)
+target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 
 # Install executable
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS CMakeSFMLProject
         RUNTIME DESTINATION .)
