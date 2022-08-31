@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.16)
 project(CMakeSFMLProject LANGUAGES CXX)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 include(FetchContent)
 FetchContent_Declare(SFML
@@ -10,9 +12,5 @@ FetchContent_MakeAvailable(SFML)
 add_executable(CMakeSFMLProject src/main.cpp)
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
-if (WIN32 AND BUILD_SHARED_LIBS)
-    add_custom_command(TARGET CMakeSFMLProject POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:CMakeSFMLProject> $<TARGET_FILE_DIR:CMakeSFMLProject> COMMAND_EXPAND_LISTS)
-endif()
 
 install(TARGETS CMakeSFMLProject)
