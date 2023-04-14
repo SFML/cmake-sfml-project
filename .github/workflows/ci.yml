@@ -18,7 +18,7 @@ jobs:
         - { name: Windows VS2019, os: windows-2019  }
         - { name: Windows VS2022, os: windows-2022  }
         - { name: Linux GCC,      os: ubuntu-latest }
-        - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_CXX_COMPILER=clang++ }
         - { name: macOS,          os: macos-latest  }
         config:
         - { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
@@ -27,7 +27,7 @@ jobs:
     steps:
     - name: Install Linux Dependencies
       if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
+      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
 
     - name: Checkout
       uses: actions/checkout@v4
