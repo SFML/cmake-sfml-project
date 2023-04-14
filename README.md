@@ -24,11 +24,11 @@ The template starts out very basic, but might receive additional features over t
        libxcursor-dev \
        libudev-dev \
        libfreetype-dev \
-       libopenal-dev \
        libflac-dev \
        libvorbis-dev \
        libgl1-mesa-dev \
-       libegl1-mesa-dev
+       libegl1-mesa-dev \
+       libfreetype-dev
    ```
 8. Configure and build your project. Most popular IDEs support CMake projects with very little effort on your part.
 
