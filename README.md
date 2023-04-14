@@ -24,7 +24,6 @@ The template starts out very basic, but might receive additional features over t
        libxcursor-dev \
        libudev-dev \
        libfreetype-dev \
-       libopenal-dev \
        libflac-dev \
        libvorbis-dev \
        libgl1-mesa-dev \
