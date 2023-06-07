@@ -4,7 +4,7 @@ project(CMakeSFMLProject LANGUAGES CXX)
 include(FetchContent)
 FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.6.x)
+    GIT_TAG 2.5.1)
 FetchContent_MakeAvailable(SFML)
 
 add_executable(CMakeSFMLProject src/main.cpp)
