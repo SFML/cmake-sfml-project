@@ -42,7 +42,6 @@ class Snake {
         std::deque<Position> snake_queue;
         Sprite snake_body, food_icon;
         DIRECTIONS cur_directions = DIRECTIONS::RIGHT;
-
         Position food_pos;
     public:             
         Snake(Sprite &snake_sp, Sprite &food_sp) {
@@ -60,6 +59,7 @@ class Snake {
                 snake_body.setPosition(p.x*PIXEL_SIZE, p.y*PIXEL_SIZE);
                 window.draw(snake_body);
             }
+            food_icon.setPosition(food_pos.x*PIXEL_SIZE, food_pos.y*PIXEL_SIZE);
             window.draw(food_icon);
 
         }
@@ -81,7 +81,9 @@ class Snake {
                 return;
             }
             if (snake_head == food_pos) {
-                snake_queue.emplace_back(snake_tail);
+                snake_queue.emplace_back(next_pos);
+                ++snake_size;
+                generate_food();
                 return;
             }
             snake_queue.pop_front();
@@ -92,7 +94,7 @@ class Snake {
         }
 
         void generate_food() {
-            Position food{(rand()%MAX_WIDTH)*PIXEL_SIZE, (rand()%MAX_HEIGHT)*PIXEL_SIZE};
+            Position food{(rand()%MAX_WIDTH), (rand()%MAX_HEIGHT)};
             for (Position p: snake_queue)  {
                 if (p == food) {
                     generate_food();
