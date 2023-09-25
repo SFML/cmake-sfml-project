@@ -43,6 +43,7 @@ class Snake {
         Sprite snake_body, food_icon;
         DIRECTIONS cur_directions = DIRECTIONS::RIGHT;
         Position food_pos;
+        bool alive = true;
     public:             
         Snake(Sprite &snake_sp, Sprite &food_sp) {
             snake_size = 1;
@@ -61,6 +62,9 @@ class Snake {
             }
             food_icon.setPosition(food_pos.x*PIXEL_SIZE, food_pos.y*PIXEL_SIZE);
             window.draw(food_icon);
+            if (!alive) {
+                window.close();
+            }
 
         }
         void changeDirection(DIRECTIONS d) {
@@ -86,6 +90,13 @@ class Snake {
                 generate_food();
                 return;
             }
+
+            for (Position p: snake_queue) {
+                if (next_pos == p) {
+                    alive = 0; 
+                }
+            }
+
             snake_queue.pop_front();
             snake_queue.emplace_back(next_pos);
             std::cout<<food_pos.x<<' '<<food_pos.y<<'\n';
