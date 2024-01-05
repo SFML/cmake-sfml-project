@@ -110,7 +110,7 @@ int main() {
         float y = static_cast<float>(rand() % 1080);
         float dx = static_cast<float>(rand() % 100) / 10.0f - 50.0f;
         float dy = static_cast<float>(rand() % 100) / 10.0f - 50.0f;
-        newParticle = Particle(x, y, dx, dy, 1.0f);
+        newParticle = Particle(x, y, dx, dy, 1.0f, 10.0f);
 
         if (!isOverlapping(newParticle, particles)) {
             positionFound = true;
@@ -153,7 +153,8 @@ int main() {
         // Render particles
         window.clear();
         for (const Particle& particle : particles) {
-            RenderParticle(window, particle);
+            particle.Render(window);
+            // RenderParticle(window, particle);
         }
 
         // Render wall

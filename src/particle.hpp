@@ -8,14 +8,15 @@ private:
     float x, y;
     float vx, vy;
     float mass;
+    float radius;
 
 public:
     // Default constructor
-    Particle() : x(0), y(0), vx(0), vy(0), mass(1) {}
+    Particle() : x(0), y(0), vx(0), vy(0), mass(1), radius(10.0f) {}
 
     // Parameterized constructor
-    Particle(float x, float y, int vx, int vy, float mass)
-        : x(x), y(y), vx(vx), vy(vy), mass(mass) {}
+    Particle(float x, float y, int vx, int vy, float mass, float radius)
+        : x(x), y(y), vx(vx), vy(vy), mass(mass), radius(radius) {}
 
     void ApplyForce(float xforce, float yforce, float dt){
         float xacceleration = xforce / mass;
@@ -67,7 +68,7 @@ public:
     }
 
     void Render(sf::RenderWindow& window) const {
-            sf::CircleShape shape(5); // example radius
+            sf::CircleShape shape(radius); // example radius
             shape.setFillColor(sf::Color::White);
             shape.setPosition(x, y);
             window.draw(shape);
