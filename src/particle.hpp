@@ -67,6 +67,10 @@ public:
         return vy;
     }
 
+    const float& getradius() const{
+        return radius;
+    }
+
     void Render(sf::RenderWindow& window) const {
             sf::CircleShape shape(radius); // example radius
             shape.setFillColor(sf::Color::White);
