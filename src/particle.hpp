@@ -6,27 +6,27 @@
 class Particle {
 private:
     float x, y;
-    float dx, dy;
+    float vx, vy;
     float mass;
 
 public:
     // Default constructor
-    Particle() : x(0), y(0), dx(0), dy(0), mass(1) {}
+    Particle() : x(0), y(0), vx(0), vy(0), mass(1) {}
 
     // Parameterized constructor
-    Particle(float x, float y, int dx, int dy, float mass)
-        : x(x), y(y), dx(dx), dy(dy), mass(mass) {}
+    Particle(float x, float y, int vx, int vy, float mass)
+        : x(x), y(y), vx(vx), vy(vy), mass(mass) {}
 
     void ApplyForce(float xforce, float yforce, float dt){
         float xacceleration = xforce / mass;
         float yacceleration = yforce / mass;
-        dx += xacceleration * dt;
-        dy += yacceleration * dt;
+        vx += xacceleration * dt;
+        vy += yacceleration * dt;
     }
 
     void Update(float dt){
-        x += dx * dt;
-        y += dy * dt;
+        x += vx * dt;
+        y += vy * dt;
     }
 
     float& operator[](int i){
@@ -59,11 +59,11 @@ public:
         return mass;
     }
 
-    float& getdx(){
-        return dx;
+    float& getvx(){
+        return vx;
     }
-    float& getdy(){
-        return dy;
+    float& getvy(){
+        return vy;
     }
 
     void Render(sf::RenderWindow& window) const {

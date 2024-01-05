@@ -31,19 +31,19 @@ void checkAndBounceOffWalls(Particle& particle, float windowWidth, float windowH
 
     // Check for collision with left and right walls
     if (particle[0] - radius < 0) {
-        particle.getdx() = -particle.getdx() * restitution;  // Apply restitution to horizontal velocity
+        particle.getvx() = -particle.getvx() * restitution;  // Apply restitution to horizontal velocity
         particle[0] = radius;  // Adjust position to be just outside the wall
     } else if (particle[0] + radius > windowWidth) {
-        particle.getdx() = -particle.getdx() * restitution;  // Apply restitution to horizontal velocity
+        particle.getvx() = -particle.getvx() * restitution;  // Apply restitution to horizontal velocity
         particle[0] = windowWidth - radius;  // Adjust position to be just outside the wall
     }
 
     // Check for collision with top and bottom walls
     if (particle[1] - radius < 0) {
-        particle.getdy() = -particle.getdy() * restitution;  // Apply restitution to vertical velocity
+        particle.getvy() = -particle.getvy() * restitution;  // Apply restitution to vertical velocity
         particle[1] = radius;  // Adjust position to be just outside the wall
     } else if (particle[1] + radius > windowHeight) {
-        particle.getdy() = -particle.getdy() * restitution;  // Apply restitution to vertical velocity
+        particle.getvy() = -particle.getvy() * restitution;  // Apply restitution to vertical velocity
         particle[1] = windowHeight - radius;  // Adjust position to be just outside the wall
     }
 }
@@ -52,8 +52,8 @@ void checkAndBounceOffWalls(Particle& particle, float windowWidth, float windowH
 void resolveCollision(Particle& particle1, Particle& particle2) {
     // Calculate the difference in velocities and positions
     float restitution = 0.85f;
-    float dvx = particle1.getdx() - particle2.getdx();
-    float dvy = particle1.getdy() - particle2.getdy();
+    float dvx = particle1.getvx() - particle2.getvx();
+    float dvy = particle1.getvy() - particle2.getvy();
     float dx = particle1[0] - particle2[0];
     float dy = particle1[1] - particle2[1];
 
@@ -77,10 +77,10 @@ void resolveCollision(Particle& particle1, Particle& particle2) {
     float dotProduct = (dvx * dx + dvy * dy) / (pow(dx, 2) + pow(dy, 2));
     dotProduct *= restitution;
     // Calculate new velocities
-    particle1.getdx() -= factor * particle2.getMass() * dotProduct * dx;
-    particle1.getdy() -= factor * particle2.getMass() * dotProduct * dy;
-    particle2.getdx() += factor * particle1.getMass() * dotProduct * dx;
-    particle2.getdy() += factor * particle1.getMass() * dotProduct * dy;
+    particle1.getvx() -= factor * particle2.getMass() * dotProduct * dx;
+    particle1.getvy() -= factor * particle2.getMass() * dotProduct * dy;
+    particle2.getvx() += factor * particle1.getMass() * dotProduct * dx;
+    particle2.getvy() += factor * particle1.getMass() * dotProduct * dy;
 }
 
 bool isOverlapping(const Particle& newParticle, const std::vector<Particle>& particles) {
