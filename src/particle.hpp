@@ -56,20 +56,21 @@ public:
         }
     }
 
-    const float& getMass(){
-        return mass;
-    }
+    // Getters
+    float getX() const { return x; }
+    float getY() const { return y; }
+    float getVelocityX() const { return vx; }
+    float getVelocityY() const { return vy; }
+    float getMass() const { return mass; }
+    float getRadius() const { return radius; }
 
-    float& getvx(){
-        return vx;
-    }
-    float& getvy(){
-        return vy;
-    }
-
-    const float& getradius() const{
-        return radius;
-    }
+    // Setters
+    void setX(float newX) { x = newX; }
+    void setY(float newY) { y = newY; }
+    void setVelocityX(float newVx) { vx = newVx; }
+    void setVelocityY(float newVy) { vy = newVy; }
+    void setMass(float newMass) { mass = newMass; }
+    void setRadius(float newRadius) { radius = newRadius; }
 
     void Render(sf::RenderWindow& window) const {
             sf::CircleShape shape(radius); // example radius

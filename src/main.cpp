@@ -15,29 +15,29 @@ void RenderWall(sf::RenderWindow& window, const sf::RectangleShape& wall) {
 
 bool isColliding(Particle& particle1, Particle& particle2) {
     float dist = sqrt(pow((particle1[0] - particle2[0]), 2) + pow((particle1[1] - particle2[1]),2));
-    if (dist < particle1.getradius() + particle2.getradius()) return true;
+    if (dist < particle1.getRadius() + particle2.getRadius()) return true;
     else return false;
 }
 
 void checkAndBounceOffWalls(Particle& particle, float windowWidth, float windowHeight) {
-    float radius = particle.getradius();  // Particle radius
-    float restitution = 0.99f; // Coefficient of restitution (example value)
+    float radius = particle.getRadius();  // Particle radius
+    float restitution = 0.9f; // Coefficient of restitution (example value)
 
     // Check for collision with left and right walls
     if (particle[0] - radius < 0) {
-        particle.getvx() = -particle.getvx() * restitution;  // Apply restitution to horizontal velocity
+        particle.setVelocityX(-particle.getVelocityX() * restitution);  // Apply restitution to horizontal velocity
         particle[0] = radius;  // Adjust position to be just outside the wall
     } else if (particle[0] + radius > windowWidth) {
-        particle.getvx() = -particle.getvx() * restitution;  // Apply restitution to horizontal velocity
+        particle.setVelocityX(-particle.getVelocityX() * restitution);  // Apply restitution to horizontal velocity
         particle[0] = windowWidth - radius;  // Adjust position to be just outside the wall
     }
 
     // Check for collision with top and bottom walls
     if (particle[1] - radius < 0) {
-        particle.getvy() = -particle.getvy() * restitution;  // Apply restitution to vertical velocity
+        particle.setVelocityY( -particle.getVelocityY() * restitution);  // Apply restitution to vertical velocity
         particle[1] = radius;  // Adjust position to be just outside the wall
     } else if (particle[1] + radius > windowHeight) {
-        particle.getvy() = -particle.getvy() * restitution;  // Apply restitution to vertical velocity
+        particle.setVelocityY( -particle.getVelocityY() * restitution);  // Apply restitution to vertical velocity
         particle[1] = windowHeight - radius;  // Adjust position to be just outside the wall
     }
 }
@@ -45,14 +45,14 @@ void checkAndBounceOffWalls(Particle& particle, float windowWidth, float windowH
 
 void resolveCollision(Particle& particle1, Particle& particle2) {
     // Calculate the difference in velocities and positions
-    float restitution = 0.85f;
-    float dvx = particle1.getvx() - particle2.getvx();
-    float dvy = particle1.getvy() - particle2.getvy();
+    float restitution = 0.9f;
+    float dvx = particle1.getVelocityX() - particle2.getVelocityX();
+    float dvy = particle1.getVelocityY() - particle2.getVelocityY();
     float dx = particle1[0] - particle2[0];
     float dy = particle1[1] - particle2[1];
 
         // Calculate the overlap distance
-    float overlap = particle1.getradius() + particle2.getradius() - sqrt(pow(dx, 2) + pow(dy, 2)); // 20.0f should be the sum of radii of the two particles
+    float overlap = particle1.getRadius() + particle2.getRadius() - sqrt(pow(dx, 2) + pow(dy, 2)); // 20.0f should be the sum of radii of the two particles
     if (overlap > 0) {
         // Move each particle away by half the overlap distance
         float overlapX = overlap * dx / (2 * sqrt(pow(dx, 2) + pow(dy, 2)));
@@ -71,16 +71,16 @@ void resolveCollision(Particle& particle1, Particle& particle2) {
     float dotProduct = (dvx * dx + dvy * dy) / (pow(dx, 2) + pow(dy, 2));
     dotProduct *= restitution;
     // Calculate new velocities
-    particle1.getvx() -= factor * particle2.getMass() * dotProduct * dx;
-    particle1.getvy() -= factor * particle2.getMass() * dotProduct * dy;
-    particle2.getvx() += factor * particle1.getMass() * dotProduct * dx;
-    particle2.getvy() += factor * particle1.getMass() * dotProduct * dy;
+    particle1.setVelocityX(particle1.getVelocityX() - factor * particle2.getMass() * dotProduct * dx);
+    particle1.setVelocityY(particle1.getVelocityY() - factor * particle2.getMass() * dotProduct * dy);
+    particle2.setVelocityX(particle2.getVelocityX() + factor * particle1.getMass() * dotProduct * dx);
+    particle2.setVelocityY(particle2.getVelocityY() + factor * particle1.getMass() * dotProduct * dy);
 }
 
 bool isOverlapping(const Particle& newParticle, const std::vector<Particle>& particles) {
     for (const auto& particle : particles) {
         float dist = sqrt(pow(newParticle[0] - particle[0], 2) + pow(newParticle[1] - particle[1], 2));
-        if (dist < particle.getradius() + newParticle.getradius()) {  // Assuming each particle has a diameter of 100
+        if (dist < particle.getRadius() + newParticle.getRadius()) {  // Assuming each particle has a diameter of 100
             return true;
         }
     }
@@ -102,9 +102,9 @@ int main() {
     while (!positionFound) {
         float x = static_cast<float>(rand() % 1920);
         float y = static_cast<float>(rand() % 1080);
-        float dx = static_cast<float>(rand() % 100) / 10.0f - 50.0f;
-        float dy = static_cast<float>(rand() % 100) / 10.0f - 50.0f;
-        newParticle = Particle(x, y, dx, dy, 1.0f, 10.0f);
+        float vx = static_cast<float>(rand() % 100) / 10.0f - 50.0f;
+        float vy = static_cast<float>(rand() % 100) / 10.0f - 50.0f;
+        newParticle = Particle(x, y, vx, vy, 1.0f, 10.0f);
 
         if (!isOverlapping(newParticle, particles)) {
             positionFound = true;
