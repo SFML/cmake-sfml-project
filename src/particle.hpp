@@ -2,6 +2,8 @@
 #define PARTICLE_HPP
 #include <stdexcept>
 #include <SFML/Graphics.hpp>
+#include <cstdlib> // For rand() and srand()
+#include <ctime>   // For time()
 
 class Particle {
 private:
@@ -73,11 +75,14 @@ public:
     void setRadius(float newRadius) { radius = newRadius; }
 
     void Render(sf::RenderWindow& window) const {
-            sf::CircleShape shape(radius); // example radius
-            shape.setFillColor(sf::Color::White);
-            shape.setPosition(x, y);
-            window.draw(shape);
-        }
+        sf::CircleShape shape(radius); // example radius
+
+        // Set the fill color to a random shade of green
+        shape.setFillColor(sf::Color(255, 255, 0));
+
+        shape.setPosition(x, y);
+        window.draw(shape);
+    }
 
       
 };

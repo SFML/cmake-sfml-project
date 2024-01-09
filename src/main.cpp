@@ -114,6 +114,7 @@ void updateGrid() {
 
 
 int main() {
+    srand(static_cast<unsigned int>(time(0)));
     auto window = sf::RenderWindow{{1920u, 1080u}, "CMake SFML Project"};
     window.setFramerateLimit(144);
 
@@ -124,7 +125,7 @@ int main() {
 
     // Create a vector of particles
     // std::vector<Particle> particles;
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 1000; ++i) {
     bool positionFound = false;
     Particle newParticle;
 
@@ -133,7 +134,7 @@ int main() {
         float y = static_cast<float>(rand() % 1080);
         float vx = static_cast<float>(rand() % 100) / 10.0f - 50.0f;
         float vy = static_cast<float>(rand() % 100) / 10.0f - 50.0f;
-        newParticle = Particle(x, y, vx, vy, 1.0f, 10.0f);
+        newParticle = Particle(x, y, vx, vy, 1.0f, 3.0f);
 
         if (!isOverlapping(newParticle, particles)) {
             positionFound = true;
