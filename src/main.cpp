@@ -6,6 +6,11 @@
 #include "particle.hpp"
 #include "forces.hpp"
 
+
+const int cellWidth = 100;
+const int cellHeight = 100;
+std::vector<std::vector<std::vector<Particle*>>> grid;
+std::vector<Particle> particles;
 // Function to render a particle
 
 // Function to render a wall
@@ -87,14 +92,38 @@ bool isOverlapping(const Particle& newParticle, const std::vector<Particle>& par
     return false;
 }
 
+void updateGrid() {
+    // Clear the grid
+    for (auto &column: grid) {
+        for (auto &cell: column) {
+            cell.clear();
+        }
+    }
+
+    // Assign particles to the grid cells
+    for (Particle& particle : particles) {
+        int gridX = particle.getX() / cellWidth;
+        int gridY = particle.getY() / cellHeight;
+        if(gridX >= 0 && gridX < grid.size() && gridY >= 0 && gridY < grid[gridX].size()) {
+            grid[gridX][gridY].push_back(&particle);
+        }
+    }
+}
+
+
 
 
 int main() {
     auto window = sf::RenderWindow{{1920u, 1080u}, "CMake SFML Project"};
     window.setFramerateLimit(144);
 
+    // Initialize the grid based on the window size and cell dimensions
+    int gridRows = 1080 / cellHeight;
+    int gridCols = 1920 / cellWidth;
+    grid.resize(gridCols, std::vector<std::vector<Particle*>>(gridRows));
+
     // Create a vector of particles
-    std::vector<Particle> particles;
+    // std::vector<Particle> particles;
     for (int i = 0; i < 100; ++i) {
     bool positionFound = false;
     Particle newParticle;
@@ -135,14 +164,37 @@ int main() {
             particle.Update(dt);
         }
 
+        updateGrid();
+
         // Collision detection and resolution
-        for (size_t i = 0; i < particles.size(); ++i) {
-            for (size_t j = i + 1; j < particles.size(); ++j) {
-                if (isColliding(particles[i], particles[j])) {
-                    resolveCollision(particles[i], particles[j]);
+        for (size_t x = 0; x < grid.size(); ++x) {
+            for (size_t y = 0; y < grid[x].size(); ++y) {
+                for (Particle* particle : grid[x][y]) {
+                    // Check for collisions with particles in the same cell
+                    for (Particle* other : grid[x][y]) {
+                        if (particle != other && isColliding(*particle, *other)) {
+                            resolveCollision(*particle, *other);
+                        }
+                    }
+
+                    // Check for collisions with particles in adjacent cells
+                    for (int dx = -1; dx <= 1; ++dx) {
+                        for (int dy = -1; dy <= 1; ++dy) {
+                            int nx = x + dx;
+                            int ny = y + dy;
+                            if (nx >= 0 && ny >= 0 && nx < grid.size() && ny < grid[nx].size()) {
+                                for (Particle* neighbor : grid[nx][ny]) {
+                                    if (particle != neighbor && isColliding(*particle, *neighbor)) {
+                                        resolveCollision(*particle, *neighbor);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
+
 
         // Render particles
         window.clear();
