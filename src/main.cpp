@@ -6,7 +6,7 @@
 #include "particle.hpp"
 #include "forces.hpp"
 
-
+//cmon work
 const int cellWidth = 100;
 const int cellHeight = 100;
 std::vector<std::vector<std::vector<Particle*>>> grid;
