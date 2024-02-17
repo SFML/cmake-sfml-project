@@ -1,0 +1,7 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1708206961
+character_body_2d.tscn::PackedScene::3619165086145240265::1708206582::0::1::::<><>::uid://cu7rgkbcoarqt::::res://testFarmer.png
+icon.svg::CompressedTexture2D::3677681405735527918::1708204320::1708206965::1::::<><>::
+Level1.tscn::PackedScene::1563204657555564052::1708206578::0::1::::<><>::uid://brtfec7oq2sdd::::res://character_body_2d.tscn<>uid://gpi5jlo0ndfd::::res://test_button.tscn
+testFarmer.png::CompressedTexture2D::6243721758805127511::1708206198::1708206965::1::::<><>::
+test_button.tscn::PackedScene::452638528271388337::1708206587::0::1::::<><>::

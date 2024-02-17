@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://gpi5jlo0ndfd"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Click Me!"
