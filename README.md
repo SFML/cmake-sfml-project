@@ -23,7 +23,7 @@ Compatible on MacOS and Windows
 
 The game maintains a model state to keep track of various game elements such as the currentlevel, player status, and alien status.
 
-```mermaid
+```mermaid {
 classDiagram
 namespace Model {
     class Character {
@@ -58,6 +58,7 @@ namespace Model {
     SmallAlien <|-- NonPlayerCharacter
     LargeAlien <|-- NonPlayerCharacter
     RangedAlien <|-- NonPlayerCharacter
+}
 ```
 
 ### Character Class
