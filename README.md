@@ -3,6 +3,45 @@
 ## Overview
 
 Crop-Pocalypse is an exciting game where players defend their farm against invading aliens. The game features multiple levels, each presenting unique challenges and increasing difficulty. Players must strategically move across the map and defend their crops from the alien invasion to progress through the game.
+```mermaid
+classDiagram
+namespace Model {
+    class Character {
+        strength
+        health
+        speed
+        reach
+        name
+        icon
+        +move()
+        +attack()
+    }
+    class PlayerCharacter {
+    }
+    class Farmer
+    class HandyMan
+    class Tractor
+    class NonPlayerCharacter {
+
+    }
+    class SmallAlien
+    class LargeAlien
+    class RangedAlien
+
+}
+```
+## Getting Started
+
+To play Crop-Pocalypse, follow these steps:
+Download GoDot v4.2.1
+Clone the repository to your local machine.
+Open GoDot application and press import
+Open project.gotdot inside the src>view folder
+Press run button on top right
+
+## Compatiblity
+
+Compatible on MacOS and Windows
 
 ## Model
 
@@ -39,15 +78,3 @@ The game features a prototype user interface (UI) designed to provide players wi
 The main method serves as the entry point for the game, orchestrating the initialization of game components and starting the gameplay loop.
 Level Management: The controller includes methods to handle different game levels, such as Level 1, Level 2, and Level 3. Each level presents unique challenges and progression criteria for the player.
 
-## Getting Started
-
-To play Crop-Pocalypse, follow these steps:
-Download GoDot v4.2.1
-Clone the repository to your local machine.
-Open GoDot application and press import
-Open project.gotdot inside the src>view folder
-Press run button on top right
-
-## Compatiblity
-
-Compatible on MacOS and Windows
