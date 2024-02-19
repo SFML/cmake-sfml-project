@@ -23,43 +23,7 @@ Compatible on MacOS and Windows
 
 The game maintains a model state to keep track of various game elements such as the currentlevel, player status, and alien status.
 
-```mermaid {
-classDiagram
-namespace Model {
-    class Character {
-        strength
-        health
-        speed
-        reach
-        name
-        icon
-        +move()
-        +attack()
-    }
-    class PlayerCharacter {
-    }
-    class Farmer
-    class HandyMan
-    class Tractor
-    class NonPlayerCharacter {
-
-    }
-    class SmallAlien
-    class LargeAlien
-    class RangedAlien
-
-}
-
-    PlayerCharacter <|-- Character
-    NonPlayerCharacter <|-- Character
-    Farmer <|-- PlayerCharacter
-    HandyMan <|-- PlayerCharacter
-    Tractor <|-- PlayerCharacter
-    SmallAlien <|-- NonPlayerCharacter
-    LargeAlien <|-- NonPlayerCharacter
-    RangedAlien <|-- NonPlayerCharacter
-}
-```
+![Diagram]
 
 ### Character Class
 
