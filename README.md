@@ -18,12 +18,12 @@ Press run button on top right
 Compatible on MacOS and Windows
 
 ## Model
+![ModelView Diagram](ModelView.svg)
 
 ### Model State
 
 The game maintains a model state to keep track of various game elements such as the currentlevel, player status, and alien status.
 
-![ModelView Diagram](ModelView.svg)
 ### Character Class
 
 The character class includes attributes such as setting and getting location, attack, and health of a character.
@@ -41,12 +41,14 @@ The Alien class also inherits the Character class. Aliens are the primary advers
 The game utilizes a system to determine whether a square on the game board is occupied and contains an enemy.
 
 ## View
+![ModelView Diagram](ViewView.svg)
 
 ### Prototype UI
 
 The game features a prototype user interface (UI) designed to provide players with an engaging and intuitive gameplay experience. The UI elements include game controls, visual feedback, and essential information about the game state.
 
 ## Controller
+![ModelView Diagram](ControllerView.svg)
 
 ### Main Method
 
