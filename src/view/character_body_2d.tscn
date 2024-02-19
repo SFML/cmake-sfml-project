@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://brtfec7oq2sdd"]
-
-[ext_resource type="Texture2D" uid="uid://cu7rgkbcoarqt" path="res://testFarmer.png" id="1_be7y7"]
-
-[node name="CharacterBody2D" type="CharacterBody2D"]
-
-[node name="TestFarmer" type="Sprite2D" parent="."]
-position = Vector2(132, 104)
-texture = ExtResource("1_be7y7")
