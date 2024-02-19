@@ -23,8 +23,7 @@ Compatible on MacOS and Windows
 
 The game maintains a model state to keep track of various game elements such as the currentlevel, player status, and alien status.
 
-![Diagram](./Model View-2024-02-19-223524.svg)
-
+![ModelView Diagram](ModelView.svg)
 ### Character Class
 
 The character class includes attributes such as setting and getting location, attack, and health of a character.
