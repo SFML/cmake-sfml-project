@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxft4wx8ea2ye"]
+
+[ext_resource type="Texture2D" uid="uid://b6dxe4vogvrl6" path="res://art/playerGrey_walk1.png" id="3_mtn2p"]
+[ext_resource type="Texture2D" uid="uid://btseokfiufwpu" path="res://Land.png" id="5_uwfjo"]
+[ext_resource type="Texture2D" uid="uid://bsmt2v5uamc87" path="res://LandSelected.png" id="6_q76bg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ks8vf"]
+texture = ExtResource("5_uwfjo")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_38pvt"]
+texture = ExtResource("6_q76bg")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lfkt1"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_ks8vf")
+sources/1 = SubResource("TileSetAtlasSource_38pvt")
+
+[sub_resource type="GDScript" id="GDScript_q6xoc"]
+script/source = "extends TileMap
+
+var GridSize = 10
+var Dic = {}
+var selectedTile
+
+var EntityType
+var Occupied
+
+func _ready():
+	for x in GridSize:
+		for y in GridSize: 
+			Dic[str(Vector2(x,y))] = {
+				\"Type\": \"Land\" #this calls the farmland land
+			}
+			set_cell(0, Vector2(x,y), 0, Vector2i(0,0), 0) #this paints the tiles on layer 0
+
+func _process(delta):
+	var tile = local_to_map(get_global_mouse_position()) #this detects mouse position
+	selectedTile = map_to_local(tile)
+	
+	for x in GridSize:
+		for y in GridSize:
+			erase_cell(1, Vector2(x,y)) #erase layer1 cell as soon as not hovering
+	
+	if Dic.has(str(tile)):
+		set_cell(1, tile, 1, Vector2i(0,0), 0) #mouse hover, put selection frame
+
+func _input(event):
+	if Input.is_action_just_pressed(\"left_click\"):
+		print(\"left_click\")
+		
+	if Input.is_action_just_pressed(\"right_click\"):
+		print(\"right_click\")
+"
+
+[sub_resource type="GDScript" id="GDScript_0doqf"]
+resource_name = "Alien"
+script/source = "extends CharacterBody2D
+
+const speed = 300
+var vel = Vector2(0,0)
+var click_position = Vector2(0,0)
+
+func _ready():
+	click_position = Vector2(position.x, position.y)
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed(\"left_click\"):
+		click_position = get_global_mouse_position()
+	
+	var target_position = (click_position - position).normalized()
+	
+
+
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gki1a"]
+radius = 55.0
+height = 136.0
+
+[node name="Player" type="Area2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_lfkt1")
+format = 2
+layer_0/y_sort_enabled = true
+layer_1/y_sort_enabled = true
+layer_1/tile_data = PackedInt32Array()
+script = SubResource("GDScript_q6xoc")
+
+[node name="Alien" type="CharacterBody2D" parent="."]
+script = SubResource("GDScript_0doqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alien"]
+shape = SubResource("CapsuleShape2D_gki1a")
+
+[node name="PlayerGreyWalk1" type="Sprite2D" parent="Alien"]
+texture = ExtResource("3_mtn2p")
