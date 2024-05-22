@@ -13,7 +13,7 @@ The template starts out very basic, but might receive additional features over t
 1. Install Git and CMake. Use your system's package manager if available.
 1. Follow the above instructions about how to use GitHub's project template feature to create your own project.
 1. Clone your new GitHub repo and open the repo in your text editor of choice.
-1. Open [CMakeLists.txt](CMakeLists.txt). Rename the project and the executable to whatever name you want. The project and executable names don't have to match.
+1. Open [CMakeLists.txt](CMakeLists.txt). Rename the project and the executable to whatever name you want.
 1. If you want to add or remove any .cpp files, change the source files listed in the [`add_executable`](CMakeLists.txt#L10) call in CMakeLists.txt to match the source files your project requires. If you plan on keeping the default main.cpp file then no changes are required.
 1. If you use Linux, install SFML's dependencies using your system package manager. On Ubuntu and other Debian-based distributions you can use the following commands:
     ```
