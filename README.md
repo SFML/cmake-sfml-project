@@ -36,17 +36,11 @@ The template starts out very basic, but might receive additional features over t
     - [Qt Creator](https://doc.qt.io/qtcreator/creator-project-cmake.html)
 
     Using CMake from the command line is straightforward as well.
+    Be sure to run these commands in the root directory of the project you just created.
 
-    For a single-configuration generator (typically the case on Linux and macOS):
     ```
-    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+    cmake -B build
     cmake --build build
-    ```
-
-    For a multi-configuration generator (typically the case on Windows):
-    ```
-    cmake -S . -B build
-    cmake --build build --config Release
     ```
 1. Enjoy!
 
