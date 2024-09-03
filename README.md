@@ -14,7 +14,8 @@ The template starts out very basic, but might receive additional features over t
 1. Follow the above instructions about how to use GitHub's project template feature to create your own project.
 1. Clone your new GitHub repo and open the repo in your text editor of choice.
 1. Open [CMakeLists.txt](CMakeLists.txt). Rename the project and the executable to whatever name you want.
-1. If you want to add or remove any .cpp files, change the source files listed in the [`add_executable`](CMakeLists.txt#L10) call in CMakeLists.txt to match the source files your project requires. If you plan on keeping the default main.cpp file then no changes are required.
+1. If you want to add or remove any .cpp files, change the source files listed in the `add_executable` call in CMakeLists.txt to match the source files your project requires. If you plan on keeping the default main.cpp file then no changes are required.
+1. If your code uses the Audio or Network modules then add `sfml-audio` or `sfml-network` to the `target_link_libraries` call alongside the existing `sfml-graphics` library that is being linked.
 1. If you use Linux, install SFML's dependencies using your system package manager. On Ubuntu and other Debian-based distributions you can use the following commands:
     ```
     sudo apt update
