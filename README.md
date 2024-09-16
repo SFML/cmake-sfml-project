@@ -11,7 +11,7 @@ The template starts out very basic, but might receive additional features over t
 ## How to Use
 
 1. Install Git and CMake. Use your system's package manager if available.
-1. Follow the above instructions about how to use GitHub's project template feature to create your own project.
+1. Follow [GitHub's instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for how to use their project template feature to create your own project.
 1. Clone your new GitHub repo and open the repo in your text editor of choice.
 1. Open [CMakeLists.txt](CMakeLists.txt). Rename the project and the executable to whatever name you want.
 1. If you want to add or remove any .cpp files, change the source files listed in the `add_executable` call in CMakeLists.txt to match the source files your project requires. If you plan on keeping the default main.cpp file then no changes are required.
