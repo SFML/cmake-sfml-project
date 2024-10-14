@@ -2,16 +2,27 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <!-- Name of the executable file in the bundle. -->
     <key>CFBundleExecutable</key>
     <string>@MACOSX_BUNDLE_BUNDLE_NAME@</string>
+
+    <!-- Unique identifier for the application, typically in reverse DNS format. -->
     <key>CFBundleIdentifier</key>
     <string>@MACOSX_BUNDLE_GUI_IDENTIFIER@</string>
+
+    <!-- Short name of the bundle. This is the name that appears in the Finder and other parts of the macOS user interface. -->
     <key>CFBundleName</key>
     <string>@MACOSX_BUNDLE_BUNDLE_NAME@</string>
+
+    <!-- Version of the bundle. This is a string that represents the build version of the application. -->
     <key>CFBundleVersion</key>
     <string>@MACOSX_BUNDLE_BUNDLE_VERSION@</string>
+
+    <!-- Release version number of the bundle. This is a user-visible version number. -->
     <key>CFBundleShortVersionString</key>
     <string>@MACOSX_BUNDLE_SHORT_VERSION_STRING@</string>
+
+    <!-- Type of bundle. For applications, this is typically APPL. -->
     <key>CFBundlePackageType</key>
     <string>APPL</string>
 </dict>
