@@ -32,9 +32,18 @@ FetchContent_Declare(ImGui-SFML
     SYSTEM)
 FetchContent_MakeAvailable(ImGui-SFML)
 
-add_executable(main src/main.cpp)
+FetchContent_Declare(RoboOp
+    GIT_REPOSITORY https://github.com/RandomPythonProgrammer/Library.git
+    GIT_TAG origin/main
+)
+FetchContent_MakeAvailable(RoboOp)
+
+include_directories(include)
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+add_executable(main ${SOURCES})
 target_link_libraries(main PRIVATE sfml-graphics ImGui-SFML::ImGui-SFML)
-target_compile_features(main PRIVATE cxx_std_17)
+target_link_libraries(main PRIVATE RoboOp)
+target_compile_features(main PRIVATE cxx_std_20)
 
 if(WIN32)
     add_custom_command(
