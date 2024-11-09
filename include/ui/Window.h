@@ -13,5 +13,6 @@ private:
 public:
     Window();
     ~Window();
+    void addTool(const std::string& name, const std::shared_ptr<ITool>& tool);
     bool render();
 };

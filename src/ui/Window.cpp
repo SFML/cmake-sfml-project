@@ -2,6 +2,7 @@
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
+#include "implot.h"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 
@@ -22,6 +23,8 @@ Window::Window() {
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init();
+
+    ImPlot::CreateContext();
 }
 
 Window::~Window() {
@@ -42,21 +45,23 @@ bool Window::render() {
 
     if (ImGui::BeginMainMenuBar()) {
         if (ImGui::BeginMenu("Tools", true)) {
-            for (auto pair: tools) {
+            for (const auto& pair: tools) {
                 if (ImGui::MenuItem(pair.first.c_str())) {
                     activated[pair.first] = not activated[pair.first];
                 }
             }
+            ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
     }
 
-    for (auto pair: tools) {
+    for (const auto& pair: tools) {
         if (activated[pair.first]) {
             pair.second->render();
         }
     }
 
+    ImGui::EndFrame();
     ImGui::Render();
     int display_w, display_h;
     glfwGetFramebufferSize(window, &display_w, &display_h);
@@ -67,4 +72,9 @@ bool Window::render() {
 
     glfwSwapBuffers(window);
     return true;
+}
+
+void Window::addTool(const std::string& name, const std::shared_ptr<ITool>& tool) {
+    tools[name] = tool;
+    activated[name] = false;
 }
