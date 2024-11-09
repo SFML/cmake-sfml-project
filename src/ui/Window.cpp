@@ -13,7 +13,7 @@ Window::Window() {
     }
     window = glfwCreateWindow(1280, 720, "RoboOp Visualizer", nullptr, nullptr);
     glfwMakeContextCurrent(window);
-    glfwSwapInterval(1);
+    glfwSwapInterval(0);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();

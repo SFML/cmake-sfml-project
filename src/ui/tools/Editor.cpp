@@ -4,7 +4,7 @@
 
 void Editor::render() {
     ImGui::Begin("Splines", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-
+    ImGui::BeginChild("Poses");
     for (int i = 0; i < manager->poses.size(); i++) {
         Pose2d& point = manager->poses[i];
     
@@ -49,5 +49,6 @@ void Editor::render() {
 
         ImGui::PopID();
     }
+    ImGui::EndChild();
     ImGui::End();
 }

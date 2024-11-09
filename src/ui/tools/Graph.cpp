@@ -1,15 +1,14 @@
 #include "ui/tools/Graph.h"
 #include "common/calc.h"
+#include "imgui.h"
 #include "implot.h"
 #include "pathing/Spline.h"
-#include "pathing/Trajectory.h"
 #include <format>
 
 void Graph::render() {
     auto trajectory = manager->generateTrajectory();
-
     ImGui::Begin("Graph");
-    ImPlot::BeginPlot("Splines");
+    ImPlot::BeginPlot("Splines", ImGui::GetContentRegionAvail());
     for (int i = 0; i < trajectory->splines.size(); i++) {
         const auto& spline = trajectory->splines[i];
         double xStart = spline.start.position.x();
