@@ -1,13 +1,17 @@
 #pragma once
+#include "backends/imgui_impl_glfw.h"
 #include "ui/ITool.h"
 #include <map>
 #include <memory>
 #include <string>
 
-struct Window {
-    std::map<std::string, std::shared_ptr<ITool>> tools;
+class Window {
+private:
+    GLFWwindow* window;
     std::map<std::string, bool> activated;
+    std::map<std::string, std::shared_ptr<ITool>> tools;
+public:
     Window();
     ~Window();
-    void render();
+    bool render();
 };
