@@ -1,36 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
-project(CMakeSFMLProject LANGUAGES CXX)
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+project(RoboOpVisualizer LANGUAGES CXX)
 
 include(FetchContent)
-
-FetchContent_Declare(SFML
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.6.x
-    GIT_SHALLOW ON
-    EXCLUDE_FROM_ALL
-    SYSTEM)
-FetchContent_MakeAvailable(SFML)
-
-FetchContent_Declare(ImGui
-    GIT_REPOSITORY https://github.com/ocornut/imgui
-    GIT_TAG v1.89.9
-    GIT_SHALLOW ON
-    EXCLUDE_FROM_ALL
-    SYSTEM)
-FetchContent_MakeAvailable(ImGui)
-FetchContent_GetProperties(ImGui SOURCE_DIR IMGUI_DIR)
-
-set(IMGUI_SFML_FIND_SFML OFF)
-FetchContent_Declare(ImGui-SFML
-    GIT_REPOSITORY https://github.com/SFML/imgui-sfml
-    GIT_TAG 2.6.x
-    GIT_SHALLOW ON
-    EXCLUDE_FROM_ALL
-    SYSTEM)
-FetchContent_MakeAvailable(ImGui-SFML)
 
 FetchContent_Declare(RoboOp
     GIT_REPOSITORY https://github.com/RandomPythonProgrammer/Library.git
@@ -38,17 +9,19 @@ FetchContent_Declare(RoboOp
 )
 FetchContent_MakeAvailable(RoboOp)
 
+find_package(glfw3 REQUIRED)
+find_package(OpenGL REQUIRED)
+
 include_directories(include)
+include_directories(imgui)
+include_directories(implot)
+
 file(GLOB_RECURSE SOURCES "src/*.cpp")
-add_executable(main ${SOURCES})
-target_link_libraries(main PRIVATE sfml-graphics ImGui-SFML::ImGui-SFML)
+file(GLOB IMGUI_CORE "imgui/*.cpp")
+file(GLOB IMPLOT_CORE "implot/*.cpp")
+add_executable(main ${SOURCES} ${IMGUI_CORE} imgui/backends/imgui_impl_glfw.cpp imgui/backends/imgui_impl_opengl3.cpp ${IMPLOT_CORE})
+
+target_link_libraries(main PRIVATE glfw)
+target_link_libraries(main PRIVATE ${OPENGL_LIBRARIES})
 target_link_libraries(main PRIVATE RoboOp)
 target_compile_features(main PRIVATE cxx_std_20)
-
-if(WIN32)
-    add_custom_command(
-        TARGET main
-        COMMENT "Copy OpenAL DLL"
-        PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:main>
-        VERBATIM)
-endif()
