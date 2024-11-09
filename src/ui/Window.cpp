@@ -11,8 +11,9 @@ Window::Window() {
     if (!glfwInit()) {
         throw std::runtime_error("Failed to initialize GLFW");
     }
-    window = glfwCreateWindow(800, 800, "RoboOp Visualizer", nullptr, nullptr);
+    window = glfwCreateWindow(1280, 720, "RoboOp Visualizer", nullptr, nullptr);
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
