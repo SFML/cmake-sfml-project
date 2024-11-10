@@ -12,7 +12,7 @@ Window::Window() {
     if (!glfwInit()) {
         throw std::runtime_error("Failed to initialize GLFW");
     }
-    window = glfwCreateWindow(1280, 720, "RoboOp Visualizer", nullptr, nullptr);
+    window = glfwCreateWindow(1500, 900, "RoboOp Visualizer", nullptr, nullptr);
     glfwMakeContextCurrent(window);
     glfwSwapInterval(0);
 
