@@ -12,16 +12,16 @@ void Editor::render() {
 
         ImGui::SeparatorText(std::format("Point {}", i).c_str());
 
-        ImGui::SetNextItemWidth(75);
-        ImGui::InputDouble("X", &point.position.x());
+        ImGui::SetNextItemWidth(60);
+        ImGui::InputDouble("X", &point.position.x(), 0, 0, "%.4f");
         
         ImGui::SameLine();
-        ImGui::SetNextItemWidth(75);
-        ImGui::InputDouble("Y", &point.position.y());
+        ImGui::SetNextItemWidth(60);
+        ImGui::InputDouble("Y", &point.position.y(), 0, 0, "%.4f");
 
         ImGui::SameLine();
-        ImGui::SetNextItemWidth(75);
-        ImGui::InputDouble("RAD", &point.rotation);
+        ImGui::SetNextItemWidth(60);
+        ImGui::InputDouble("RAD", &point.rotation, 0, 0, "%.4f");
         
         ImGui::SameLine();
 
