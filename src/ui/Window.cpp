@@ -83,7 +83,7 @@ bool Window::render() {
     int display_w, display_h;
     glfwGetFramebufferSize(window, &display_w, &display_h);
     glViewport(0, 0, display_w, display_h);
-    glClearColor(50./255, 125./255, 175./255, 1);
+    glClearColor(25./255, 100./255, 150./255, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
