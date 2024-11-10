@@ -25,42 +25,51 @@ void Editor::render() {
         
         ImGui::SameLine();
 
-        if (i <= 0) {
+        ImGui::Text("|");
+
+        ImGui::SameLine();
+
+        bool disabled = false;
+
+        disabled = i <= 0;
+        if (disabled)
             ImGui::BeginDisabled();
-        }
-        if (ImGui::Button(ICON_FA_CHEVRON_UP)) {
+        if (ImGui::Button(ICON_FA_CHEVRON_UP, {20, 0})) {
             std::swap(manager->poses[i], manager->poses[i-1]);
         }
-        if (i <= 0) {
+        if (disabled)
             ImGui::EndDisabled();
-        }
+
         ImGui::SameLine();
 
-        if (i >= manager->poses.size() -1) {
+        disabled = i >= manager->poses.size() -1;
+        if (disabled)
             ImGui::BeginDisabled();
-        }
-        if (ImGui::Button(ICON_FA_CHEVRON_DOWN)) {
+        if (ImGui::Button(ICON_FA_CHEVRON_DOWN, {20, 0})) {
             std::swap(manager->poses[i], manager->poses[i+1]);
         }
-        if (i >= manager->poses.size() -1) {
-            ImGui::EndDisabled();   
-        }
+        if (disabled)
+            ImGui::EndDisabled();
         ImGui::SameLine();
 
-        if (manager->poses.size() <= 1) {
+        disabled = manager->poses.size() <= 1;
+        if (disabled)
             ImGui::BeginDisabled();
-        }
-        if (ImGui::Button(ICON_FA_XMARK)) {
+        ImGui::SetNextItemWidth(25);
+        ImGui::PushStyleColor(ImGuiCol_Button, 0xFF0000DD);
+        if (ImGui::Button(ICON_FA_XMARK, {20, 0})) {
                 manager->poses.erase(manager->poses.begin() + i);
         }
-        if (manager->poses.size() <= 1) {
+        ImGui::PopStyleColor();
+        if (disabled)
             ImGui::EndDisabled();
-        }
         ImGui::SameLine();
 
-        if (ImGui::Button(ICON_FA_PLUS)) {
+        ImGui::PushStyleColor(ImGuiCol_Button, 0xFF00DD00);
+        if (ImGui::Button(ICON_FA_PLUS, {20, 0})) {
             manager->poses.insert(manager->poses.begin() + i + 1, Pose2d::Zero());
         }
+        ImGui::PopStyleColor();
 
         ImGui::PopID();
     }
