@@ -5,6 +5,7 @@
 #include "implot.h"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
+#include "IconsFontAwesome6.h"
 
 
 Window::Window() {
@@ -21,6 +22,21 @@ Window::Window() {
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+
+    float baseFontSize = 16.0f;
+    float iconFontSize = baseFontSize * 2.0f / 3.0f;
+
+    ImFontConfig config;
+    config.SizePixels = baseFontSize;
+    io.Fonts->AddFontDefault(&config);
+
+    static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_16_FA, 0 };
+    ImFontConfig icons_config; 
+    icons_config.MergeMode = true; 
+    icons_config.PixelSnapH = true; 
+    icons_config.GlyphMinAdvanceX = iconFontSize;
+    io.Fonts->AddFontFromFileTTF( FONT_ICON_FILE_NAME_FAS, iconFontSize, &icons_config, icons_ranges );
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init();

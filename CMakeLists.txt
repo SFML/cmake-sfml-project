@@ -15,6 +15,7 @@ find_package(OpenGL REQUIRED)
 include_directories(include)
 include_directories(imgui)
 include_directories(implot)
+include_directories(font)
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 file(GLOB IMGUI_CORE "imgui/*.cpp")
@@ -25,3 +26,5 @@ target_link_libraries(main PRIVATE glfw)
 target_link_libraries(main PRIVATE ${OPENGL_LIBRARIES})
 target_link_libraries(main PRIVATE RoboOp)
 target_compile_features(main PRIVATE cxx_std_20)
+
+file(COPY font/fa-solid-900.ttf DESTINATION ${CMAKE_BINARY_DIR}/bin)
