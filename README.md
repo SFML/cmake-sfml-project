@@ -53,11 +53,8 @@ SFML is found via CMake's [FetchContent](https://cmake.org/cmake/help/latest/mod
 FetchContent automatically downloads SFML from GitHub and builds it alongside your own code.
 Beyond the convenience of not having to install SFML yourself, this ensures ABI compatibility and simplifies things like specifying static versus shared libraries.
 
-Modifying what version of SFML you want is as easy as changing the [`GIT_TAG`](CMakeLists.txt#L7) argument.
-Currently it uses the latest in-development version of SFML 2 via the `2.6.x` tag.
-If you're feeling adventurous and want to give SFML 3 a try, use the `master` tag.
-Beware, this requires changing your code to suit the modified API!
-The nice folks in the [SFML community](https://github.com/SFML/SFML#community) can help you with that transition and the bugs you may encounter along the way.
+Modifying what version of SFML you want is as easy as changing the `GIT_TAG` argument.
+Currently it uses SFML 3 via the `3.0.0` tag.
 
 ## But I want to...
 
