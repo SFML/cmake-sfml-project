@@ -22,6 +22,7 @@ The template starts out very basic, but might receive additional features over t
    sudo apt install \
        libxrandr-dev \
        libxcursor-dev \
+       libxi-dev \
        libudev-dev \
        libfreetype-dev \
        libflac-dev \
