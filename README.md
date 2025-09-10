@@ -8,7 +8,8 @@ The template starts out very basic, but might receive additional features over t
 - Basic CMake script to build your project and link SFML on any operating system
 - Basic [GitHub Actions](https://github.com/features/actions) script for all major platforms
 
-## How to Use
+## Quick start
+### Command line
 
 1. Install [Git](https://git-scm.com/downloads) and [CMake](https://cmake.org/download/). Use your system's package manager if available.
 2. Follow [GitHub's instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for how to use their project template feature to create your own project. If you don't want to use GitHub, see the section below.
@@ -47,6 +48,15 @@ The template starts out very basic, but might receive additional features over t
    ```
 
 9. Enjoy!
+
+### Visual Studio
+Using a visual studio workspace is the simplest way to get started on windows
+
+1. Ensure you have the [required components installed](https://learn.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170#installation)
+2. If you have already cloned this repo, you can [Open the folder](https://learn.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170#ide-integration)
+3. If not, you can [clone it directly in visual studio](https://learn.microsoft.com/en-us/visualstudio/get-started/tutorial-open-project-from-repo?view=vs-2022)
+
+Visual studio should automatically configure the cmake project, then you can build and run as normal through visual studio. See the links above for more details
 
 ## Upgrading SFML
 
