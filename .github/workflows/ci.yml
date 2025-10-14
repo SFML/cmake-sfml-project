@@ -32,7 +32,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Configure
-      run: cmake -B build ${{matrix.platform.flags}} ${{matrix.config.flags}}
+      run: cmake -B build -DCMAKE_COMPILE_WARNING_AS_ERROR=ON ${{matrix.platform.flags}} ${{matrix.config.flags}}
 
     - name: Build
       run: cmake --build build --config Release
