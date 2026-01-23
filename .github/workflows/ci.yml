@@ -19,6 +19,7 @@ jobs:
         - { name: Linux GCC,      os: ubuntu-latest }
         - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: macOS,          os: macos-latest  }
+        - { name: iOS,            os: macos-latest, flags: -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO -GXcode }
         config:
         - { name: Shared, flags: -DBUILD_SHARED_LIBS=TRUE }
         - { name: Static, flags: -DBUILD_SHARED_LIBS=FALSE }
@@ -36,3 +37,18 @@ jobs:
 
     - name: Build
       run: cmake --build build --config Release
+  
+  Android:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v5
+
+    - name: Build with Gradle
+      working-directory: ./android
+      run: ./gradlew packageRelease
+

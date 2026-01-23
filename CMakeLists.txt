@@ -12,8 +12,17 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
+if(ANDROID)
+    add_library(main SHARED src/main.cpp)
+else()
+    add_executable(main src/main.cpp)
+endif()
+
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)
+
+if(ANDROID OR IOS)
+    target_link_libraries(main PRIVATE SFML::Main)
+endif()
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT main)

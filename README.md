@@ -1,4 +1,4 @@
-# CMake SFML Project Template
+# CMake SFML Project Template (Including mobile platforms)
 
 This repository template should allow for a fast and hassle-free kick start of your next SFML project using CMake.
 Thanks to [GitHub's nature of templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template), you can fork this repository without inheriting its Git history.
@@ -6,7 +6,7 @@ Thanks to [GitHub's nature of templates](https://docs.github.com/en/repositories
 The template starts out very basic, but might receive additional features over time:
 
 - Basic CMake script to build your project and link SFML on any operating system
-- Basic [GitHub Actions](https://github.com/features/actions) script for all major platforms
+- Basic [GitHub Actions](https://github.com/features/actions) script for all platforms
 
 ## Quick start
 
@@ -60,6 +60,16 @@ Using a Visual Studio workspace is the simplest way to get started on windows.
 4. If not, you can [clone it directly in Visual Studio](https://learn.microsoft.com/en-us/visualstudio/get-started/tutorial-open-project-from-repo).
 
 Visual Studio should automatically configure the CMake project, then you can build and run as normal through Visual Studio. See the links above for more details.
+
+### iOS
+
+To build with iOS use cmakes [built-in support](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#cross-compiling-for-ios-tvos-visionos-or-watchos) by adding `-DCMAKE_SYSTEM_NAME=iOS` when configuring projects.
+
+It is strongly recommended to use Xcode for iOS, otherwise there are extra manual steps required to produce a working app
+
+### Android
+
+To build for android install [Android Studio](https://developer.android.com/studio) and open the provided project in the `android` folder
 
 ## Upgrading SFML
 
