@@ -12,6 +12,7 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
+# Android requires a shared library for the main executable
 if(ANDROID)
     add_library(main SHARED src/main.cpp)
 else()
@@ -21,8 +22,17 @@ endif()
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)
 
+# Mobile platforms need the main module
 if(ANDROID OR IOS)
     target_link_libraries(main PRIVATE SFML::Main)
+endif()
+
+# iOS requires a bundle with an identifier to build
+if(IOS)
+    set_target_properties(main PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_BUNDLE_NAME "CMakeSFMLProject"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "com.example.cmake-sfml-project")
 endif()
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT main)
