@@ -67,7 +67,7 @@ To build with iOS use cmakes [built-in support](https://cmake.org/cmake/help/lat
 
 It is strongly recommended to use Xcode for iOS, otherwise there are extra manual steps required to produce a working app
 
-If you want to build and run your app on a real device, you will also need to select a development team in the "Signing and capabilities" tab in the project settings
+If you want to build and run your app on a real device, you will also need to select a development team in the "Signing and capabilities" tab in the project settings.
 
 ### Android
 
