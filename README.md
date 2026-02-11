@@ -65,7 +65,7 @@ Visual Studio should automatically configure the CMake project, then you can bui
 
 To build with iOS use cmakes [built-in support](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#cross-compiling-for-ios-tvos-visionos-or-watchos) by adding `-DCMAKE_SYSTEM_NAME=iOS` when configuring projects.
 
-It is strongly recommended to use Xcode for iOS, otherwise there are extra manual steps required to produce a working app
+It is strongly recommended to use Xcode for iOS, otherwise there are extra manual steps required to produce a working app.
 
 If you want to build and run your app on a real device, you will also need to select a development team in the "Signing and capabilities" tab in the project settings.
 
