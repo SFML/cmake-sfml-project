@@ -1,8 +1,13 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Window.hpp>
+#include "Init_Boot.h"
 
 int main()
 {
 	sf::RenderWindow window( sf::VideoMode( { 200, 200 } ), "SFML works!" );
+	windowInit( window );
+
 	sf::CircleShape shape( 100.f );
 	shape.setFillColor( sf::Color::Magenta );
 
@@ -16,7 +21,7 @@ int main()
 		shape.setOrigin(shape.getGeometricCenter());
 		sf::Vector2f windowSize(window.getSize().x, window.getSize().y);
 		shape.setPosition( windowSize / 2.f );
-		sf::Angle angle1 = shape.getRotation();
+		const sf::Angle angle1 = shape.getRotation();
 		window.clear();
 		shape.rotate(angle1 + sf::degrees(1));
 		window.draw( shape );
