@@ -5,15 +5,16 @@
 
 int main()
 {
-	sf::RenderWindow window( sf::VideoMode( { 200, 200 } ), "SFML works!" );
-	windowInit( window );
-
-	sf::RectangleShape shape(sf::Vector2f(100.f, 100.f));
+	sf::RenderWindow window;
+	windowInit( window, 768, 1024, 60, false, false );
 	sf::Vector2f windowSize(window.getSize().x, window.getSize().y);
 
-	shape.setFillColor( sf::Color::Magenta );
-	shape.setOrigin(shape.getGeometricCenter());
-	shape.setPosition( windowSize / 2.f );
+	/////TEST SHAPE SHIT/////
+		sf::RectangleShape shape(sf::Vector2f(100.f, 100.f));
+		shape.setFillColor( sf::Color::Magenta );
+		shape.setOrigin(shape.getGeometricCenter());
+		shape.setPosition( windowSize / 2.f );
+	//////////////////////////
 
 	while ( window.isOpen() )
 	{
@@ -23,9 +24,13 @@ int main()
 				window.close();
 		}
 
+	/////MORE TEST SHAPE SHIT///////////
 		const sf::Angle angle1 = shape.getRotation();
-		window.clear();
 		shape.rotate(angle1 + sf::degrees(.000002f));
+
+	/////////////////////////////
+
+		window.clear(sf::Color::Blue);
 		window.draw( shape );
 		window.display();
 	}

@@ -1,41 +1,52 @@
 //
 // Created by Viper on 3/31/2026.
 //
-
-#ifndef TESTSFML1_INIT_BOOT_H
-#define TESTSFML1_INIT_BOOT_H
-
+#pragma once
 #include <SFML/Graphics.hpp>
 
-const int targetFPS = 60;
-const bool vSyncEnabled = false;
-const bool keyRepeatEnabled = false;
-inline sf::RenderWindow* windowPTR{};
+/////////////////////////////
+//Variables///
+/////////////////////////////
+int targetFPS;
+bool vSyncEnabled;
+bool keyRepeatEnabled;
+unsigned int windowWidth;
+unsigned int windowHeight;
+sf::RenderWindow* windowPTR;
 
-inline void windowInit( sf::RenderWindow& window ) {
+/////////////////////////////
+///Protos///
+////////////////////////////
+void windowInit( sf::RenderWindow& window, unsigned int windowHeightX, unsigned int windowWidthX, int fpsX, bool vSyncX, bool keyRepeatX );
+
+void windowClose( sf::RenderWindow& window );
+
+void windowFPS(sf::RenderWindow& window, int fpsX);
+
+void windowVSync(sf::RenderWindow& window, bool vSyncX);
+
+void windowKeyRepeat(sf::RenderWindow& window, bool keyRepeatX);
+
+///////////////////////////////
+///Function Definitions///
+///////////////////////////////
+void windowInit(sf::RenderWindow &window, int windowHeightX, const int windowWidthX,
+    int fpsX, bool vSyncX, bool keyRepeatX) {
+
+    //////windowInit Variables/////////
+    targetFPS = fpsX;
+    vSyncEnabled = vSyncX;
+    keyRepeatEnabled = keyRepeatX;
+    windowWidth = windowWidthX;
+    windowHeight = windowHeightX;
     windowPTR = &window;
-    window.create( sf::VideoMode( { 1024, 768 } ), "SFML works!" );
-    window.setFramerateLimit( targetFPS );
-    window.setVerticalSyncEnabled( vSyncEnabled );
-    window.setKeyRepeatEnabled( keyRepeatEnabled );
-    window.clear();
-    window.requestFocus();
-}
 
-inline void windowClose( sf::RenderWindow& window ) {
-    window.close();
+    ////////windowInit Instructions////////
+    windowPTR->create( sf::VideoMode( { windowWidth, windowHeight } ), "SFML works!" );
+    windowPTR->setFramerateLimit( targetFPS );
+    windowPTR->setVerticalSyncEnabled( vSyncEnabled );
+    windowPTR->setKeyRepeatEnabled( keyRepeatEnabled );
+    windowPTR->clear();
+    windowPTR->requestFocus();
+//
 }
-
-inline void windowFPS(sf::RenderWindow& window, int fpsX) {
-    window.setFramerateLimit( fpsX );
-}
-
-inline void windowVSync(sf::RenderWindow& window, bool vSyncX) {
-    window.setVerticalSyncEnabled( vSyncX );
-}
-
-inline void windowKeyRepeat(sf::RenderWindow& window, bool keyRepeatX) {
-    window.setKeyRepeatEnabled( keyRepeatX );
-}
-
-#endif //TESTSFML1_INIT_BOOT_H
