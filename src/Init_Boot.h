@@ -18,8 +18,8 @@ inline void windowInit( sf::RenderWindow& window ) {
     window.setFramerateLimit( targetFPS );
     window.setVerticalSyncEnabled( vSyncEnabled );
     window.setKeyRepeatEnabled( keyRepeatEnabled );
-    windowPTR->clear();
-    windowPTR->requestFocus();
+    window.clear();
+    window.requestFocus();
 }
 
 inline void windowClose( sf::RenderWindow& window ) {

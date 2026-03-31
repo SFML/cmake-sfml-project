@@ -8,8 +8,12 @@ int main()
 	sf::RenderWindow window( sf::VideoMode( { 200, 200 } ), "SFML works!" );
 	windowInit( window );
 
-	sf::CircleShape shape( 100.f );
+	sf::RectangleShape shape(sf::Vector2f(100.f, 100.f));
+	sf::Vector2f windowSize(window.getSize().x, window.getSize().y);
+
 	shape.setFillColor( sf::Color::Magenta );
+	shape.setOrigin(shape.getGeometricCenter());
+	shape.setPosition( windowSize / 2.f );
 
 	while ( window.isOpen() )
 	{
@@ -18,12 +22,10 @@ int main()
 			if ( event->is<sf::Event::Closed>() )
 				window.close();
 		}
-		shape.setOrigin(shape.getGeometricCenter());
-		sf::Vector2f windowSize(window.getSize().x, window.getSize().y);
-		shape.setPosition( windowSize / 2.f );
+
 		const sf::Angle angle1 = shape.getRotation();
 		window.clear();
-		shape.rotate(angle1 + sf::degrees(1));
+		shape.rotate(angle1 + sf::degrees(.000002f));
 		window.draw( shape );
 		window.display();
 	}
