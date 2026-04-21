@@ -31,7 +31,10 @@ The template starts out very basic, but might receive additional features over t
        libvorbis-dev \
        libgl1-mesa-dev \
        libegl1-mesa-dev \
-       libfreetype-dev
+       libfreetype-dev \
+       libharfbuzz-dev \
+       libmbedtls-dev \
+       libssh2-1-dev
    ```
 8. Configure and build your project. Most popular IDEs support CMake projects with very little effort on your part.
 
@@ -68,7 +71,7 @@ FetchContent automatically downloads SFML from GitHub and builds it alongside yo
 Beyond the convenience of not having to install SFML yourself, this ensures ABI compatibility and simplifies things like specifying static versus shared libraries.
 
 Modifying what version of SFML you want is as easy as changing the `GIT_TAG` argument.
-Currently it uses SFML 3 via the `3.0.2` tag.
+Currently it uses SFML 3 via the `3.1.0` tag.
 
 ## But I want to...
 
