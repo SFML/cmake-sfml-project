@@ -7,17 +7,17 @@
 /////////////////////////////
 //Variables///
 /////////////////////////////
-int targetFPS;
-bool vSyncEnabled;
-bool keyRepeatEnabled;
-unsigned int windowWidth;
-unsigned int windowHeight;
-sf::RenderWindow* windowPTR;
+inline int targetFPS;
+inline bool vSyncEnabled;
+inline bool keyRepeatEnabled;
+inline unsigned int windowWidth;
+inline unsigned int windowHeight;
+inline sf::RenderWindow* windowPTR;
 
 /////////////////////////////
 ///Protos///
 ////////////////////////////
-void windowInit( sf::RenderWindow& window, unsigned int windowHeightX, unsigned int windowWidthX, int fpsX, bool vSyncX, bool keyRepeatX );
+inline void windowInit( sf::RenderWindow& window, unsigned int windowHeightX, unsigned int windowWidthX, int fpsX, bool vSyncX, bool keyRepeatX );
 
 void windowClose( sf::RenderWindow& window );
 
@@ -28,25 +28,3 @@ void windowVSync(sf::RenderWindow& window, bool vSyncX);
 void windowKeyRepeat(sf::RenderWindow& window, bool keyRepeatX);
 
 ///////////////////////////////
-///Function Definitions///
-///////////////////////////////
-void windowInit(sf::RenderWindow &window, int windowHeightX, const int windowWidthX,
-    int fpsX, bool vSyncX, bool keyRepeatX) {
-
-    //////windowInit Variables/////////
-    targetFPS = fpsX;
-    vSyncEnabled = vSyncX;
-    keyRepeatEnabled = keyRepeatX;
-    windowWidth = windowWidthX;
-    windowHeight = windowHeightX;
-    windowPTR = &window;
-
-    ////////windowInit Instructions////////
-    windowPTR->create( sf::VideoMode( { windowWidth, windowHeight } ), "SFML works!" );
-    windowPTR->setFramerateLimit( targetFPS );
-    windowPTR->setVerticalSyncEnabled( vSyncEnabled );
-    windowPTR->setKeyRepeatEnabled( keyRepeatEnabled );
-    windowPTR->clear();
-    windowPTR->requestFocus();
-//
-}

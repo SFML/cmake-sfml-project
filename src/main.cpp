@@ -1,7 +1,7 @@
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include "Init_Boot.h"
+#include "Init_Boot.cpp"
 
 int main()
 {
