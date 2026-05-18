@@ -53,6 +53,22 @@ The template starts out very basic, but might receive additional features over t
 
 9. Enjoy!
 
+### Using the supplied Makefile
+
+```bash
+# Build the project
+make build
+
+# Execute the built binary
+make run
+
+# Build then immediately run
+make all
+
+# Remove all generated files for a clean start
+make clean
+```
+
 ### Visual Studio
 
 Using a Visual Studio workspace is the simplest way to get started on windows.
