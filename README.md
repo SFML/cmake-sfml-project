@@ -53,7 +53,7 @@ The template starts out very basic, but might receive additional features over t
     mbedtls-devel \
     libssh2-devel
    ```
-9. Configure and build your project. Most popular IDEs support CMake projects with very little effort on your part.
+8. Configure and build your project. Most popular IDEs support CMake projects with very little effort on your part.
 
    - [VS Code](https://code.visualstudio.com) via the [CMake extension](https://code.visualstudio.com/docs/cpp/cmake-linux)
    - [Visual Studio](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170)
@@ -68,7 +68,7 @@ The template starts out very basic, but might receive additional features over t
    cmake --build build
    ```
 
-10. Enjoy!
+9. Enjoy!
 
 ### Visual Studio
 
